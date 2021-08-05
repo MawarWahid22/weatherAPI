@@ -14,19 +14,14 @@ if ('geolocation' in navigator) {
       const json = await response.json();
       weather = json.weather.currently;
       air = json.air_quality.results[0].measurements[0];
-      document.getElementById('summary').textContent = weather.summary;
-      document.getElementById('temp').textContent = weather.temperature;
-      document.getElementById('aq_parameter').textContent = air.parameter;
-      document.getElementById('aq_value').textContent = air.value;
-      document.getElementById('aq_units').textContent = air.unit;
-      document.getElementById('aq_date').textContent = air.lastUpdated;
+    
     } catch (error) {
       console.error(error);
       air = { value: -1 };
       document.getElementById('aq_value').textContent = 'NO READING';
     }
 
-    const data = { lat, lon, weather, air };
+    const data = { lat, lon };
     const options = {
       method: 'POST',
       headers: {
